@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1020"/>
+      <stop offset="1" stop-color="#182B50"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" rx="32" fill="url(#bg)"/>
+  <circle cx="1080" cy="100" r="240" fill="#6C8CFF" opacity=".13"/>
+  <circle cx="1140" cy="580" r="290" fill="#58D3B8" opacity=".08"/>
+  <text x="92" y="210" fill="#A8B6FF" font-family="Arial, sans-serif" font-size="34" font-weight="700">JOB SEARCH COMMAND CENTER</text>
+  <text x="86" y="330" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="90" font-weight="800">CareerPilot AI</text>
+  <text x="92" y="408" fill="#D7DEEF" font-family="Arial, sans-serif" font-size="38">Track applications. Match your CV. Improve the funnel.</text>
+  <rect x="92" y="480" width="305" height="70" rx="35" fill="#6C8CFF"/>
+  <text x="132" y="528" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="28" font-weight="700">Python • Streamlit</text>
+</svg>
