@@ -1,0 +1,21 @@
+import {escapeHtml as h} from "./store.mjs";
+import {summary,sourceStats} from "./metrics.mjs";
+import {heading,metric,panel,pipeline,activity,empty,button} from "./components.mjs";
+export function matchPage(){
+ return heading("EXPLAINABLE MATCHING","CV Match Lab","Compare your CV to a job description using transparent, browser-based scoring.")+
+ '<form class="panel" id="match-form"><div class="panel-head"><h2>Compare your documents</h2><small>Runs in this browser</small></div><div class="editor-wrap"><label class="field"><span>CV text</span><textarea class="control" name="cv" required placeholder="Paste your CV or resume here…"></textarea></label><label class="field"><span>Job description</span><textarea class="control" name="job" required placeholder="Paste the role description here…"></textarea></label></div><p class="form-help">Your texts never leave this browser. This is an estimate, not an ATS score guarantee.</p><div class="actions"><button type="submit" class="btn primary">✧ Analyze match</button></div></form><div id="match-results" class="match-result"></div>';
+}
+export function matchResults(r){
+const skills=(list,cls)=>list.length?'<div class="skills">'+list.map(s=>'<span class="skill '+cls+'">'+h(s)+'</span>').join("")+'</div>':'<p>No skills detected in the catalog.</p>';
+return '<section class="panel"><div class="panel-head"><h2>Your match analysis</h2><small>Explainable results</small></div><div class="grid three-col"><div class="score-card"><div class="score-number">'+r.overall_score+'%</div><div class="score-label">Overall match</div></div>'+metric("Text similarity",r.text_similarity+"%","TF-IDF estimate")+metric("Skill coverage",r.skill_score+"%","Recognized job skills")+'</div><div class="separator"></div><div class="grid two-col"><div><h3>Matched skills</h3>'+skills(r.matched_skills,"")+'</div><div><h3>Missing skills</h3>'+skills(r.missing_skills,"missing")+'</div></div><div class="separator"></div><h3>Suggested next steps</h3><ol class="recommendations">'+r.recommendations.map(s=>'<li>'+h(s)+'</li>').join("")+'</ol></section>';
+}
+export function analytics(rows){
+ const m=summary(rows),sources=sourceStats(rows);
+ return heading("MEASURE YOUR PROGRESS","Search analytics","Understand where responses come from and which applications move forward.")+
+ '<div class="grid metrics">'+metric("Response rate",m.response_rate+"%","Of submitted applications")+metric("Average match",m.avg_match+"%","Across tracked records")+metric("Interviews",m.interviews,"Meetings secured")+'</div>'+
+ (rows.length?'<div class="grid two-col">'+panel("Status distribution",pipeline(rows),"Your pipeline")+panel("Weekly applications",activity(rows),"Last six weeks")+'</div>'+panel("Application sources",sources.length?'<div class="analytics-source">'+sources.map(s=>'<div class="analytics-source-row"><div><strong>'+h(s.source)+'</strong><small>'+s.total+' applications • '+s.responses+' responses</small></div><div class="anal-score">'+s.rate+'%</div></div>').join("")+'</div>':empty("No sources yet","Add sources to applications."),"Response rate by source"):panel("No analytics yet",empty("Start tracking to see insights","Add an application or load example data.")));
+}
+export function about(){
+ return heading("THE PROJECT","About CareerPilot AI","A practical job-search workspace and portfolio project.")+
+ '<section class="panel about-copy"><h2>One place for your next opportunity</h2><p>Track applications, prioritize follow-ups, export records and compare a CV with job requirements.</p><h3>Cloudflare edition</h3><ul><li>Zero paid APIs. HTML, CSS and JavaScript served through Cloudflare Workers.</li><li>Records stay in browser storage. There is no online account or device synchronization.</li><li>Export a JSON backup often, especially before resetting browser storage.</li><li>The browser matcher approximates the Python TF-IDF / skill-overlap method; scores may differ slightly.</li><li>The original Python Streamlit + SQLite application remains intact in this GitHub repository.</li></ul><div class="warning">Clearing browser data or changing devices may remove access to saved records. Download a backup before doing so.</div><div class="actions">'+button("Export JSON backup","backup")+button("Clear browser data","reset","danger")+'</div></section>';
+}

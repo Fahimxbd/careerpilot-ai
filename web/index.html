@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1222">
+  <meta name="description" content="CareerPilot AI: a free, private job application tracker, career dashboard and explainable CV match analyzer.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <title>CareerPilot AI | Your job search, organized</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="CareerPilot AI home">
+        <span class="brand-icon">C<span class="brand-spark">✦</span></span>
+        <span><strong>CareerPilot <em>AI</em></strong><small>JOB SEARCH WORKSPACE</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav aria-label="Main navigation" class="nav">
+        <button type="button" data-page="overview" class="nav-link">◫ <span>Overview</span></button>
+        <button type="button" data-page="applications" class="nav-link">▤ <span>Applications</span><span class="nav-count" id="nav-count">0</span></button>
+        <button type="button" data-page="match" class="nav-link">✧ <span>CV Match Lab</span></button>
+        <button type="button" data-page="analytics" class="nav-link">▥ <span>Analytics</span></button>
+        <button type="button" data-page="about" class="nav-link">ⓘ <span>About</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="privacy-box"><span class="privacy-dot"></span><strong>Private by design</strong><p>Data stays in this browser. No account or paid API required.</p></div>
+        <div class="sidebar-actions">
+          <button type="button" class="sidebar-action" data-action="seed">Load sample data</button>
+          <button type="button" class="sidebar-action" data-action="backup">Export JSON backup</button>
+          <label class="sidebar-action file-label" for="restore-file">Import JSON backup</label>
+          <input id="restore-file" type="file" accept=".json,application/json" hidden>
+        </div>
+        <small class="footer-note">CareerPilot AI • Cloudflare edition</small>
+      </div>
+    </aside>
+    <div class="mobile-backdrop" id="backdrop" hidden></div>
+    <div class="workarea">
+      <header class="topbar"><div class="crumb">
+        <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <span>Workspace</span><span class="crumb-slash">/</span><strong id="page-crumb">Overview</strong>
+      </div>
+      <div class="top-right"><span class="top-private"><span class="privacy-dot"></span> Local & private</span><span class="avatar">CP</span></div>
+      </header>
+      <main id="main" tabindex="-1" aria-live="polite"></main>
+      <footer class="site-footer">Built to help you apply with clarity. No tracking, no external AI services.</footer>
+    </div>
+  </div>
+  <dialog id="record-dialog" class="record-dialog" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</body>
+</html>
