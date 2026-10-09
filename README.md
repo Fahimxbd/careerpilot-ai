@@ -13,6 +13,12 @@ A local-first **job application tracker and explainable CV match analyzer** buil
 [![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+## Live demo
+
+**Cloudflare Workers:** [Open CareerPilot AI](https://careerpilot-ai.fahimprivateuser-d8a.workers.dev/)
+
+The Cloudflare-hosted web edition runs in your browser and saves applications locally. The original Python/Streamlit edition remains available in this repository. See [Cloudflare deployment instructions](CLOUDFLARE_DEPLOY.md).
+
 ## Why this project exists
 
 Job seekers often track roles in scattered notes, forget follow-ups, and send one generic CV everywhere. CareerPilot AI puts the workflow in one place:
